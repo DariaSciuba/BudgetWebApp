@@ -1,0 +1,154 @@
+/*------------------------------*/
+/*----------Main style----------*/
+/*------------------------------*/
+
+:root{
+    --header-color: olive;
+    --background-color: lightgrey;
+    --main-font-color: #095309;
+}
+
+body {
+    background-color: var(--background-color);
+    font-family: Calibri;
+    margin: 0 100px;
+}
+
+
+.center {
+    text-align: center;
+}
+
+/*--Table edition--*/
+
+table, th, td {
+    border: 1px solid #0d2d14;
+    border-collapse: collapse;
+    padding: 20px;
+}
+
+th, td {
+    padding: 5px;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/*------------------------------*/
+/*----------Form style----------*/
+/*------------------------------*/
+
+
+input[type=text], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px auto;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=submit] {
+    width: 100%;
+    background-color: var(--header-color);
+    opacity: 70%;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px auto;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background-color: var(--header-color);
+    opacity: 50%;
+}
+
+.backgroundContainer {
+    width: 20%;
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+}
+
+.link-button {
+    width: 100%;
+    background-color: var(--header-color);
+    opacity: 70%;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px auto;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/*------------------------------*/
+/*--------Header section--------*/
+/*------------------------------*/
+
+header {
+    background-color: var(--header-color);
+    height: 40px;
+    padding: 10px;
+    opacity: 70%;
+}
+
+.header-button {
+    width: 24%;
+    height: 40px;
+    border: none;
+    display: inline-block;
+    background-color: var(--header-color);
+    font-size: 20px;
+    color: antiquewhite;
+}
+
+.header-button:hover {
+    color: yellowgreen;
+    font-size: 90%;
+}
+
+.align {
+    width: 80%;
+    margin: 0 auto;
+}
+
+/*------------------------------*/
+/*---------Main section---------*/
+/*------------------------------*/
+
+main {
+    width: 75%;
+    float: right;
+}
+
+/*------------------------------*/
+/*--------Sidebar section--------*/
+/*------------------------------*/
+
+aside {
+    width: 20%;
+    float: left;
+}
+
+/*------------------------------*/
+/*--------Footer section--------*/
+/*------------------------------*/
+
+footer {
+    background-color: var(--header-color);
+    opacity: 80%;
+    z-index: 1;
+    color: #0d2d14;
+    height: 50px;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    position: fixed;
+    clear: both;
+}
+
