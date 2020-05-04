@@ -1,6 +1,9 @@
 package com.company.budgetWebApp.dao.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -12,7 +15,7 @@ public class ExpenseEntity {
     private Long id;
 
     @Temporal(TemporalType.DATE)
-    private Date date = new Date();
+    private Date date;
 
     @ManyToOne
     private SubcategoryEntity subcategory;
@@ -64,6 +67,17 @@ public class ExpenseEntity {
 
     public void setNote(String note) {
         this.note = note;
+    }
+
+    @Override
+    public String toString() {
+        return "ExpenseEntity{" +
+                "id=" + id +
+                ", date=" + date +
+                ", subcategory=" + subcategory +
+                ", amount=" + amount +
+                ", note='" + note + '\'' +
+                '}';
     }
 
 }

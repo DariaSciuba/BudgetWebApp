@@ -22,31 +22,37 @@
     <main>
 
         <h1>Expenses List</h1>
-        <table>
-            <tr>
-                <th>ID</th>
-                <th>Date</th>
-                <th>Category</th>
-                <th>Amount</th>
-                <th>Note</th>
 
-            </tr>
-
-            <c:forEach var = "expense" items = "${expenses}">
+        <div class="backgroundContainer">
+            <table>
                 <tr>
-                    <td><c:out value = "${expense.id}"/></td>
-                    <td><c:out value = "${expense.date}"/></td>
-                    <td><c:out value = "${expense.subcategory.name}"/></td>
-                    <td><c:out value = "${expense.amount}"/></td>
-                    <td><c:out value = "${expense.note}"/></td>
-                </tr>
-            </c:forEach>
+                    <th>ID</th>
+                    <th>Date</th>
+                    <th>Category</th>
+                    <th>Amount</th>
+                    <th>Note</th>
 
-        </table>
+                </tr>
+
+                <c:forEach var = "expense" items = "${expenses}">
+                    <tr>
+                        <td><c:out value = "${expense.id}"/></td>
+                        <td><c:out value = "${expense.date}"/></td>
+                        <td><c:out value = "${expense.subcategory.name}"/></td>
+                        <td><c:out value = "${expense.amount}"/></td>
+                        <td><c:out value = "${expense.note}"/></td>
+                    </tr>
+                </c:forEach>
+
+            </table>
+
+            <a href="/app/expense/add"><button class="link-button">Add new expense!</button></a>
+
+        </div>
+
     </main>
 
-<%@ include file="footer.jsp" %>
-
+    <%@ include file="footer.jsp" %>
 
 </body>
 </html>

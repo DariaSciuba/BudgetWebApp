@@ -52,13 +52,11 @@ public class SubcategoryController {
             subcategoryEntity.setCategory(categoryEntity);
             subcategoryManager.save(subcategoryEntity);
             return "redirect:/app/subcategory/list";
-
     }
 
     @ModelAttribute("categories")
     private List<CategoryDTO> fetchCategoriesToDto() {
         return categoryManager.mapCategoryListEntityToDto(categoryManager.findAll());
-
     }
 
 }

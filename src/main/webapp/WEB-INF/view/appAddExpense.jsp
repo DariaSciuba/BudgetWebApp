@@ -4,7 +4,7 @@
 <%@ include file="header.jsp" %>
 
 <head>
-    <title>Add subcategory</title>
+    <title>Add expense</title>
 </head>
 
 <body>
@@ -23,16 +23,22 @@
 
 <main>
 
-    <h1>Add new Subcategory!</h1>
+    <h1>Add new expense!</h1>
 
     <div class="backgroundContainer">
-        <form:form method="POST" modelAttribute="newSubcategoryDto">
+        <form:form method="POST" modelAttribute="newExpenseDto">
 
-            <label for="name">Subcategory name</label>
-            <form:input id="name" type="text" path="name" placeholder="Subcategory..."/>
+            <label for="amount">Expense</label>
+            <form:input id="amount" type="number" path="amount"/>
 
-            <label for="category">Category type</label>
-            <form:select id="category" path="category.id" itemValue="id" itemLabel="name" items="${categories}"/>
+            <label for="date">Date</label>
+            <form:input id="date" type="date" path="date"/>
+
+            <label for="subcategory">Subcategory type</label>
+            <form:select id="subcategory" path="subcategory.id" itemValue="id" itemLabel="name" items="${subcategories}"/>
+
+            <label for="note">Note</label>
+            <form:input id="note" type="text" path="note"/>
 
             <input type="submit" value="Add"/>
 

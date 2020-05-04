@@ -4,7 +4,7 @@
 <%@ include file="header.jsp" %>
 
 <head>
-    <title>Categories</title>
+    <title>Add category</title>
 </head>
 
 <body>

@@ -4,6 +4,9 @@ import com.company.budgetWebApp.dao.entity.SubcategoryEntity;
 import com.company.budgetWebApp.dto.SubcategoryDTO;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Component
 public class SubcategoryMapper {
 
@@ -27,6 +30,12 @@ public class SubcategoryMapper {
         return subcategoryDTO;
     }
 
+    public List<SubcategoryEntity> mapSubcategoryListDtoToEntity(List<SubcategoryDTO> subcategoryDtos) {
+        return subcategoryDtos.stream().map(this::mapSubcategoryDtoToEntity).collect(Collectors.toList());
+    }
 
+    public List<SubcategoryDTO> mapSubcategoryListEntityToDto(List<SubcategoryEntity> subcategoryEntities) {
+        return subcategoryEntities.stream().map(this::mapSubcategoryEntityToDto).collect(Collectors.toList());
+    }
 
 }

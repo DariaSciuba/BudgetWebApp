@@ -1,11 +1,12 @@
 package com.company.budgetWebApp.dto;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class ExpenseDTO {
 
     private Long id;
-    private Date date = new Date();
+    private Date date;
     private SubcategoryDTO subcategory;
     private double amount;
     private String note;
@@ -51,4 +52,16 @@ public class ExpenseDTO {
     public void setNote(String note) {
         this.note = note;
     }
+
+    @Override
+    public String toString() {
+        return "ExpenseDTO{" +
+                "id=" + id +
+                ", date=" + date +
+                ", subcategoryDTO=" + subcategory +
+                ", amount=" + amount +
+                ", note='" + note + '\'' +
+                '}';
+    }
+
 }

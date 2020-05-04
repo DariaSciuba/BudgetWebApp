@@ -8,6 +8,7 @@ import com.company.budgetWebApp.dto.mapper.SubcategoryMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -31,13 +32,15 @@ public class SubcategoryManager {
         return subcategoryMapper.mapSubcategoryEntityToDto(subcategoryEntity);
     }
 
-
+    public List<SubcategoryDTO> mapSubcategoryListEntityToDto(List<SubcategoryEntity> subcategoryEntityList) {
+        return subcategoryMapper.mapSubcategoryListEntityToDto(subcategoryEntityList);
+    }
 
     public Optional<SubcategoryEntity> findById(Long id) {
         return subcategoryRepository.findById(id);
     }
 
-    public Iterable<SubcategoryEntity> findAll() {
+    public List<SubcategoryEntity> findAll() {
         return subcategoryRepository.findAll();
     }
 
