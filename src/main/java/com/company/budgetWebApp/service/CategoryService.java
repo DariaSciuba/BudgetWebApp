@@ -1,9 +1,9 @@
-package com.company.budgetWebApp.manager;
+package com.company.budgetWebApp.service;
 
 import com.company.budgetWebApp.dao.entity.CategoryEntity;
 import com.company.budgetWebApp.dao.repository.CategoryRepository;
-import com.company.budgetWebApp.dto.CategoryDTO;
-import com.company.budgetWebApp.dto.mapper.CategoryMapper;
+import com.company.budgetWebApp.service.dto.CategoryDTO;
+import com.company.budgetWebApp.service.mapper.CategoryMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,31 +11,31 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class CategoryManager {
+public class CategoryService {
 
     private CategoryRepository categoryRepository;
     private CategoryMapper categoryMapper;
 
     @Autowired
-    public CategoryManager(CategoryRepository categoryRepository, CategoryMapper categoryMapper){
+    public CategoryService(CategoryRepository categoryRepository, CategoryMapper categoryMapper){
         this.categoryRepository = categoryRepository;
         this.categoryMapper = categoryMapper;
     }
 
     public CategoryEntity mapCategoryDtoToEntity(CategoryDTO categoryDTO) {
-        return categoryMapper.mapCategoryDtoToEntity(categoryDTO);
+        return this.categoryMapper.categoryDtoToEntity(categoryDTO);
     }
 
     public CategoryDTO mapCategoryEntityToDto(CategoryEntity categoryEntity) {
-        return categoryMapper.mapCategoryEntityToDto(categoryEntity);
+        return this.categoryMapper.categoryEntityToDto(categoryEntity);
     }
 
     public List<CategoryEntity> mapCategoryListDtoToEntity(List<CategoryDTO> categoryDtos) {
-        return categoryMapper.mapCategoryListDtoToEntity(categoryDtos);
+        return categoryMapper.categoryDtosToEntity(categoryDtos);
     }
 
     public List<CategoryDTO> mapCategoryListEntityToDto(List<CategoryEntity> categoryEntities) {
-        return categoryMapper.mapCategoryListEntityToDto(categoryEntities);
+        return categoryMapper.categoryEntityToDtos(categoryEntities);
     }
 
     public Optional<CategoryEntity> findById(Long id) {

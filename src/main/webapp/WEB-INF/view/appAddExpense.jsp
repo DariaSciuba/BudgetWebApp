@@ -32,10 +32,10 @@
             <form:input id="amount" type="number" path="amount"/>
 
             <label for="date">Date</label>
-            <form:input id="date" type="date" path="date"/>
+            <form:input id="date" type="date" path="dateDTO"/>
 
             <label for="subcategory">Subcategory type</label>
-            <form:select id="subcategory" path="subcategory.id" itemValue="id" itemLabel="name" items="${subcategories}"/>
+            <form:select id="subcategory" path="subcategoryDTO.id" itemValue="id" itemLabel="subcategoryName" items="${subcategories}"/>
 
             <label for="note">Note</label>
             <form:input id="note" type="text" path="note"/>

@@ -3,7 +3,6 @@ package com.company.budgetWebApp.dao.entity;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -17,13 +16,12 @@ public class ExpenseEntity {
     @Temporal(TemporalType.DATE)
     private Date date;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private SubcategoryEntity subcategory;
 
     @Column(scale = 2)
     private double amount;
     private String note;
-
 
     public ExpenseEntity() {
 

@@ -16,7 +16,7 @@ public class SubcategoryEntity {
     @Column(nullable = false, unique = true)
     private String name;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private CategoryEntity category;
 
     @OneToMany

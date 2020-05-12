@@ -2,14 +2,13 @@ package com.company.budgetWebApp.api;
 
 import com.company.budgetWebApp.dao.entity.CategoryEntity;
 import com.company.budgetWebApp.dao.entity.SubcategoryEntity;
-import com.company.budgetWebApp.dto.CategoryDTO;
-import com.company.budgetWebApp.dto.SubcategoryDTO;
-import com.company.budgetWebApp.manager.CategoryManager;
-import com.company.budgetWebApp.manager.SubcategoryManager;
+import com.company.budgetWebApp.service.dto.CategoryDTO;
+import com.company.budgetWebApp.service.dto.SubcategoryDTO;
+import com.company.budgetWebApp.service.CategoryService;
+import com.company.budgetWebApp.service.SubcategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,18 +22,18 @@ import java.util.List;
 @RequestMapping("/app/subcategory")
 public class SubcategoryController {
 
-    private final SubcategoryManager subcategoryManager;
-    private final CategoryManager categoryManager;
+    private final SubcategoryService subcategoryService;
+    private final CategoryService categoryService;
 
     @Autowired
-    public SubcategoryController(SubcategoryManager subcategoryManager, CategoryManager categoryManager) {
-        this.subcategoryManager = subcategoryManager;
-        this.categoryManager = categoryManager;
+    public SubcategoryController(SubcategoryService subcategoryService, CategoryService categoryService) {
+        this.subcategoryService = subcategoryService;
+        this.categoryService = categoryService;
     }
 
     @GetMapping("/list")
-    public String getSubcategories(Model map) {
-        map.addAttribute("subcategories", subcategoryManager.findAll());
+    public String getSubcategories(Model model) {
+        model.addAttribute("subcategories", subcategoryService.findAll());
         return "subcategories";
     }
 
@@ -47,16 +46,16 @@ public class SubcategoryController {
 
     @PostMapping("/add")
     public String addSubcategoryProcess(@ModelAttribute("newSubcategoryDto") @Valid SubcategoryDTO subcategoryDTO) {
-            SubcategoryEntity subcategoryEntity = subcategoryManager.mapSubcategoryDtoToEntity(subcategoryDTO);
-            CategoryEntity categoryEntity = categoryManager.findById(subcategoryDTO.getCategory().getId()).get();
+            SubcategoryEntity subcategoryEntity = subcategoryService.mapSubcategoryDtoToEntity(subcategoryDTO);
+            CategoryEntity categoryEntity = categoryService.findById(subcategoryDTO.getCategoryDTO().getId()).get();
             subcategoryEntity.setCategory(categoryEntity);
-            subcategoryManager.save(subcategoryEntity);
+            subcategoryService.save(subcategoryEntity);
             return "redirect:/app/subcategory/list";
     }
 
     @ModelAttribute("categories")
     private List<CategoryDTO> fetchCategoriesToDto() {
-        return categoryManager.mapCategoryListEntityToDto(categoryManager.findAll());
+        return categoryService.mapCategoryListEntityToDto(categoryService.findAll());
     }
 
 }

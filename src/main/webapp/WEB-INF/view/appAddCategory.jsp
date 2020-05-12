@@ -29,10 +29,10 @@
             <form:form method="POST" modelAttribute="newCategoryDto">
 
                 <label for="name">Category name</label>
-                <form:input id="name" type="text" path="name" placeholder="Category..."/>
+                <form:input id="name" type="text" path="categoryName" placeholder="Category..."/>
 
                 <label for="type">Category type</label>
-                <form:select id="type" path="type">
+                <form:select id="type" path="categoryType">
                     <form:option value="expense">expense</form:option>
                     <form:option value="income">income</form:option>
                 </form:select>

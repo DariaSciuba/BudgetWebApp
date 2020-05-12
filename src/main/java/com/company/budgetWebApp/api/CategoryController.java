@@ -1,8 +1,8 @@
 package com.company.budgetWebApp.api;
 
 import com.company.budgetWebApp.dao.entity.CategoryEntity;
-import com.company.budgetWebApp.dto.CategoryDTO;
-import com.company.budgetWebApp.manager.CategoryManager;
+import com.company.budgetWebApp.service.dto.CategoryDTO;
+import com.company.budgetWebApp.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,16 +15,16 @@ import javax.validation.Valid;
 @RequestMapping("/app/category")
 public class CategoryController {
 
-    private CategoryManager categoryManager;
+    private CategoryService categoryService;
 
     @Autowired
-    public CategoryController(CategoryManager categoryManager) {
-        this.categoryManager = categoryManager;
+    public CategoryController(CategoryService categoryService) {
+        this.categoryService = categoryService;
     }
 
     @GetMapping("/list")
     public String findAll(Model model) {
-        model.addAttribute("categories", categoryManager.findAll());
+        model.addAttribute("categories", categoryService.findAll());
         return "categories";
     }
 
@@ -37,12 +37,8 @@ public class CategoryController {
     @PostMapping("/add")
     public String addCategoryProcess(@ModelAttribute("newCategoryDto") @Valid CategoryDTO categoryDTO,
                                      BindingResult result) {
-        if(result.hasErrors()) {
-            return "appAddCategory";
-        } else {
-            CategoryEntity categoryEntity = categoryManager.mapCategoryDtoToEntity(categoryDTO);
-            categoryManager.save(categoryEntity);
-            return "redirect:/app/category/list";
-        }
+        CategoryEntity categoryEntity = categoryService.mapCategoryDtoToEntity(categoryDTO);
+        categoryService.save(categoryEntity);
+        return "redirect:/app/category/list";
     }
 }

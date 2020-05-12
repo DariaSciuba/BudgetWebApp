@@ -29,10 +29,10 @@
         <form:form method="POST" modelAttribute="newSubcategoryDto">
 
             <label for="name">Subcategory name</label>
-            <form:input id="name" type="text" path="name" placeholder="Subcategory..."/>
+            <form:input id="name" type="text" path="subcategoryName" placeholder="Subcategory..."/>
 
             <label for="category">Category type</label>
-            <form:select id="category" path="category.id" itemValue="id" itemLabel="name" items="${categories}"/>
+            <form:select id="category" path="categoryDTO.id" itemValue="id" itemLabel="categoryName" items="${categories}"/>
 
             <input type="submit" value="Add"/>
 

@@ -2,8 +2,6 @@ package com.company.budgetWebApp.dao.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -21,7 +19,7 @@ public class CategoryEntity {
 
     @OneToMany
     @JoinColumn(name = "category_id")
-    private Set<SubcategoryEntity> subcategories = new HashSet<>();
+    private Set<SubcategoryEntity> subcategories;
 
     public CategoryEntity() {
 
