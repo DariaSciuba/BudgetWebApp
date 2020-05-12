@@ -8,6 +8,7 @@ public class SubcategoryDTO {
     private String subcategoryName;
     private CategoryDTO categoryDTO;
     private List<ExpenseDTO> expensesDTO;
+    private List<IncomeDTO> incomesDTO;
 
     public SubcategoryDTO() {
     }
@@ -42,5 +43,13 @@ public class SubcategoryDTO {
 
     public void setExpensesDTO(List<ExpenseDTO> expensesDTO) {
         this.expensesDTO = expensesDTO;
+    }
+
+    public List<IncomeDTO> getIncomesDTO() {
+        return incomesDTO;
+    }
+
+    public void setIncomesDTO(List<IncomeDTO> incomesDTO) {
+        this.incomesDTO = incomesDTO;
     }
 }

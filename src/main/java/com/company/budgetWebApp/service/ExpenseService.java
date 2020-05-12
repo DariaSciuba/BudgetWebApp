@@ -26,7 +26,7 @@ public class ExpenseService {
         return expenseMapper.expenseDtoToEntity(expenseDTO);
     }
 
-    public ExpenseDTO mapExpenseDtoToEntity(ExpenseEntity expenseEntity) {
+    public ExpenseDTO mapExpenseEntityToDto(ExpenseEntity expenseEntity) {
         return expenseMapper.expenseEntityToDto(expenseEntity);
     }
 

@@ -23,6 +23,10 @@ public class SubcategoryEntity {
     @JoinColumn(name = "subcategory_id")
     private Set<ExpenseEntity> expenses;
 
+    @OneToMany
+    @JoinColumn(name = "subcategory_id")
+    private Set<IncomeEntity> incomes;
+
     public SubcategoryEntity() {
 
     }
@@ -57,6 +61,14 @@ public class SubcategoryEntity {
 
     public void setExpenses(Set<ExpenseEntity> expenses) {
         this.expenses = expenses;
+    }
+
+    public Set<IncomeEntity> getIncomes() {
+        return incomes;
+    }
+
+    public void setIncomes(Set<IncomeEntity> incomes) {
+        this.incomes = incomes;
     }
 
     @Override

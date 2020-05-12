@@ -4,8 +4,8 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "expenses")
-public class ExpenseEntity {
+@Table(name = "incomes")
+public class IncomeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,7 +22,7 @@ public class ExpenseEntity {
 
     private String note;
 
-    public ExpenseEntity() {
+    public IncomeEntity() {
 
     }
 
@@ -68,7 +68,7 @@ public class ExpenseEntity {
 
     @Override
     public String toString() {
-        return "ExpenseEntity{" +
+        return "IncomeEntity{" +
                 "id=" + id +
                 ", date=" + date +
                 ", subcategory=" + subcategory +
@@ -76,5 +76,4 @@ public class ExpenseEntity {
                 ", note='" + note + '\'' +
                 '}';
     }
-
 }
