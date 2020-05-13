@@ -33,7 +33,7 @@ public class IncomeController {
     @GetMapping("/list")
     public String getIncomes(Model model) {
         model.addAttribute("incomes", incomeService.findAll());
-        return "incomes";
+        return "appIncomesList";
     }
 
     @GetMapping("/add")
@@ -53,7 +53,7 @@ public class IncomeController {
 
     @ModelAttribute("subcategories")
     private List<SubcategoryDTO> fetchSubcategoriesToDto() {
-        return subcategoryService.mapSubcategoryListEntityToDto(subcategoryService.findAll());
+        return subcategoryService.mapSubcategoryListEntityToDto(subcategoryService.findSubcategoriesIncomes());
     }
 
 }

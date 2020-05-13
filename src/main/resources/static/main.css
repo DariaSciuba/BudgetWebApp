@@ -11,9 +11,8 @@
 body {
     background-color: var(--background-color);
     font-family: Calibri;
-    margin: 0 100px;
+    margin: 0 50px;
 }
-
 
 .center {
     text-align: center;
@@ -93,29 +92,26 @@ input[type=submit]:hover {
 
 header {
     background-color: var(--header-color);
-    height: 40px;
-    padding: 10px;
+    height: 50px;
     opacity: 70%;
 }
 
-.header-button {
-    width: 24%;
-    height: 40px;
-    border: none;
-    display: inline-block;
-    background-color: var(--header-color);
+.topnav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 15px;
+    text-decoration: none;
     font-size: 20px;
-    color: antiquewhite;
 }
 
-.header-button:hover {
-    color: yellowgreen;
-    font-size: 90%;
+.topnav a:hover {
+    background-color: var(--background-color);
+    color: black;
 }
 
-.align {
-    width: 80%;
-    margin: 0 auto;
+.topnav a.logo {
+    padding: 0px;
 }
 
 /*------------------------------*/
@@ -123,8 +119,9 @@ header {
 /*------------------------------*/
 
 main {
-    width: 75%;
-    float: right;
+    width: 55%;
+    float: left;
+    margin-left: 10px;
 }
 
 /*------------------------------*/
@@ -132,8 +129,10 @@ main {
 /*------------------------------*/
 
 aside {
-    width: 20%;
+    clear: both;
+    width: 40%;
     float: left;
+    margin: 0px 15px;
 }
 
 /*------------------------------*/
@@ -145,9 +144,8 @@ footer {
     opacity: 80%;
     z-index: 1;
     color: #0d2d14;
-    height: 50px;
     width: 100%;
-    left: 0;
+    height: 50px;
     bottom: 0;
     position: fixed;
     clear: both;

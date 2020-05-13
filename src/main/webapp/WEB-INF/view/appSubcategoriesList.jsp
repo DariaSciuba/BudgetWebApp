@@ -1,12 +1,16 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-<%@ include file="header.jsp" %>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>Expenses</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/main.css">
+    <title>Subcategories</title>
 </head>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <body>
+    <%@ include file="header.jsp" %>
 
     <aside>
         <h2>Lorem Ipsum...</h2>
@@ -17,36 +21,31 @@
             Phasellus bibendum, massa sed fringilla hendrerit, nunc sapien bibendum ex, sed sodales tortor nunc ut orci.
             Aliquam tempus molestie dui, non consectetur est gravida eu. Phasellus vulputate est ac efficitur posuere.
             Duis auctor in ante et eleifend. Nulla a magna elit. Nulla posuere pulvinar ultricies. Mauris interdum
-            dapibus ultricies. Vestibulum commodo fermentum odio, sit amet faucibus ex dictum a.</p>    </aside>
+            dapibus ultricies. Vestibulum commodo fermentum odio, sit amet faucibus ex dictum a.</p>
+    </aside>
 
     <main>
-
-        <h1>Expenses List</h1>
+        <h1>Subcategories List</h1>
 
         <div class="backgroundContainer">
             <table>
                 <tr>
                     <th>ID</th>
-                    <th>Date</th>
+                    <th>Name</th>
                     <th>Category</th>
-                    <th>Amount</th>
-                    <th>Note</th>
-
                 </tr>
 
-                <c:forEach var = "expense" items = "${expenses}">
+                <c:forEach var = "subcategory" items = "${subcategories}">
                     <tr>
-                        <td><c:out value = "${expense.id}"/></td>
-                        <td><c:out value = "${expense.date}"/></td>
-                        <td><c:out value = "${expense.subcategory.name}"/></td>
-                        <td><c:out value = "${expense.amount}"/></td>
-                        <td><c:out value = "${expense.note}"/></td>
+                        <td><c:out value = "${subcategory.id}"/></td>
+                        <td><c:out value = "${subcategory.name}"/></td>
+                        <td><c:out value = "${subcategory.category.name}"/></td>
                     </tr>
                 </c:forEach>
 
             </table>
 
-            <a href="/app/expense/add"><button class="link-button">Add new expense!</button></a>
+            <a href="/app/subcategory/add"><button class="link-button">Add new subcategory!</button></a>
 
         </div>
 

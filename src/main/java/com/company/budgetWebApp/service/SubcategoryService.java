@@ -7,8 +7,7 @@ import com.company.budgetWebApp.service.mapper.SubcategoryMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class SubcategoryService {
@@ -42,6 +41,28 @@ public class SubcategoryService {
         return subcategoryRepository.findAll();
     }
 
+    public List<SubcategoryEntity> findSubcategoriesIncomes() {
+        List<SubcategoryEntity> subcategoriesIncomes = new ArrayList<>();
+        for(SubcategoryEntity subcategoryEntity : subcategoryRepository.findAll()) {
+            if(subcategoryEntity.getCategory().getType().equals("income")) {
+                subcategoriesIncomes.add(subcategoryEntity);
+            }
+        }
+        Arrays.sort(new List[]{subcategoriesIncomes});
+        return subcategoriesIncomes;
+    }
+
+    public List<SubcategoryEntity> findSubcategoriesExpenses() {
+        List<SubcategoryEntity> subcategoriesExpenses = new ArrayList<>();
+        for(SubcategoryEntity subcategoryEntity : subcategoryRepository.findAll()) {
+            if(subcategoryEntity.getCategory().getType().equals("expense")) {
+                subcategoriesExpenses.add(subcategoryEntity);
+            }
+        }
+        Arrays.sort(new List[]{subcategoriesExpenses});
+        return subcategoriesExpenses;
+    }
+
     public SubcategoryEntity save(SubcategoryEntity subcategory) {
         return subcategoryRepository.save(subcategory);
     }
@@ -49,5 +70,7 @@ public class SubcategoryService {
     public void deleteById(Long id) {
         subcategoryRepository.deleteById(id);
     }
+
+
 
 }

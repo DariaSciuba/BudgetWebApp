@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @RequestMapping("/app/category")
@@ -23,15 +24,8 @@ public class CategoryController {
     }
 
     @GetMapping("/list")
-    public String findAll(Model model) {
+    public void findAll(Model model) {
         model.addAttribute("categories", categoryService.findAll());
-        return "categories";
-    }
-
-    @GetMapping("/add")
-    public String addCategory(Model model) {
-        model.addAttribute("newCategoryDto", new CategoryDTO());
-        return "appAddCategory";
     }
 
     @PostMapping("/add")
@@ -39,6 +33,11 @@ public class CategoryController {
                                      BindingResult result) {
         CategoryEntity categoryEntity = categoryService.mapCategoryDtoToEntity(categoryDTO);
         categoryService.save(categoryEntity);
-        return "redirect:/app/category/list";
+        return "redirect:/app/subcategory/customize";
+    }
+
+    @ModelAttribute("newCategoryDTO")
+    private void newCategoryDTO(Model model) {
+        model.addAttribute("newCategoryDto", new CategoryDTO());
     }
 }

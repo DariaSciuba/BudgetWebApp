@@ -1,14 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/main.css">
+    <title>Your budget!</title>
+</head>
+
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<head>
-    <title>Your budget!</title>
-</head>
-
 <body>
 
-<%@ include file="header.jsp" %>
+    <%@ include file="header.jsp" %>
 
     <aside>
         <h2>Lorem Ipsum...</h2>
@@ -24,16 +29,9 @@
 
     <main>
         <h1>Hello!</h1>
-        <h2>Welcome to your budget app!</h2>
+        <h2>Welcome to your personal budget app!</h2>
 
         <p>This is a place where you can manage your own budget! Check what easy it is.</p>
-        
-        <ul>
-            <li><a href="/app/category/list">Categories list</a></li>
-            <li><a href="/app/subcategory/list">Subcategories list</a></li>
-            <li><a href="/app/expense/list">Expenses list</a></li>
-            <li><a href="/app/income/list">Incomes list</a></li>
-        </ul>
 
     </main>
 

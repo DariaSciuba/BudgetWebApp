@@ -30,7 +30,7 @@ public class ExpenseController {
     @GetMapping("/list")
     public String getExpenses(Model model) {
         model.addAttribute("expenses", expenseService.findAll());
-        return "expenses";
+        return "appExpensesList";
     }
 
     @GetMapping("/add")

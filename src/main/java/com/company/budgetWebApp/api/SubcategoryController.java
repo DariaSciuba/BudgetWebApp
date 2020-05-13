@@ -31,17 +31,19 @@ public class SubcategoryController {
         this.categoryService = categoryService;
     }
 
-    @GetMapping("/list")
-    public String getSubcategories(Model model) {
-        model.addAttribute("subcategories", subcategoryService.findAll());
-        return "subcategories";
-    }
+//    @GetMapping("/list")
+//    public String getSubcategories(Model model) {
+//        List<SubcategoryEntity> subcategoryEntityList = subcategoryService.findAll();
+//        System.out.println(subcategoryEntityList);
+//        model.addAttribute("subcategories", subcategoryService.findAll());
+//        return "appSubcategoriesList";
+//    }
 
-
-    @GetMapping("/add")
-    public String addSubcategory(Model model) {
+    @GetMapping("/customize")
+    public String customizeTable(Model model) {
+        model.addAttribute("newCategoryDto", new CategoryDTO());
         model.addAttribute("newSubcategoryDto", new SubcategoryDTO());
-        return "appAddSubcategory";
+        return "appCustomizeTable";
     }
 
     @PostMapping("/add")
@@ -50,12 +52,17 @@ public class SubcategoryController {
             CategoryEntity categoryEntity = categoryService.findById(subcategoryDTO.getCategoryDTO().getId()).get();
             subcategoryEntity.setCategory(categoryEntity);
             subcategoryService.save(subcategoryEntity);
-            return "redirect:/app/subcategory/list";
+            return "redirect:/app/subcategory/customize";
     }
 
     @ModelAttribute("categories")
     private List<CategoryDTO> fetchCategoriesToDto() {
         return categoryService.mapCategoryListEntityToDto(categoryService.findAll());
+    }
+
+    @ModelAttribute("subcategories")
+    private List<SubcategoryEntity> subcategoryEntityList() {
+        return subcategoryService.findAll();
     }
 
 }
