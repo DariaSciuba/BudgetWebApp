@@ -6,6 +6,7 @@ import java.util.Set;
 
 @Entity
 @Table (name = "categories")
+@Embeddable
 public class CategoryEntity {
 
     @Id
@@ -19,6 +20,8 @@ public class CategoryEntity {
 
     @OneToMany
     @JoinColumn(name = "category_id")
+    @ElementCollection
+    @OrderBy("name ASC")
     private Set<SubcategoryEntity> subcategories;
 
     public CategoryEntity() {

@@ -64,6 +64,9 @@ public class SubcategoryService {
     }
 
     public SubcategoryEntity save(SubcategoryEntity subcategory) {
+        String subcategoryName = subcategory.getName();
+        String subcategoryChecker = subcategoryName.substring(0,1).toUpperCase() + subcategoryName.substring(1);
+        subcategory.setName(subcategoryChecker);
         return subcategoryRepository.save(subcategory);
     }
 

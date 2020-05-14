@@ -6,6 +6,7 @@ import java.util.Set;
 
 @Entity
 @Table(name="subcategories")
+@Embeddable
 public class SubcategoryEntity {
 
     @Id
@@ -17,14 +18,19 @@ public class SubcategoryEntity {
     private String name;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @Embedded
     private CategoryEntity category;
 
     @OneToMany
     @JoinColumn(name = "subcategory_id")
+    @ElementCollection
+    @OrderBy("date ASC")
     private Set<ExpenseEntity> expenses;
 
     @OneToMany
     @JoinColumn(name = "subcategory_id")
+    @ElementCollection
+    @OrderBy("date ASC")
     private Set<IncomeEntity> incomes;
 
     public SubcategoryEntity() {

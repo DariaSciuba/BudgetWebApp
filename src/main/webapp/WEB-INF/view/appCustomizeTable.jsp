@@ -15,11 +15,10 @@
 <%@ include file="header.jsp" %>
 
 <aside>
-    <div>
+    <div class="editing">
         <%@ include file="appAddCategory.jsp" %>
     </div>
-
-    <div>
+    <div class="editing">
         <%@ include file="appAddSubcategory.jsp" %>
     </div>
 </aside>

@@ -15,6 +15,7 @@ public class IncomeEntity {
     private Date date;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @Embedded
     private SubcategoryEntity subcategory;
 
     @Column(scale = 2)

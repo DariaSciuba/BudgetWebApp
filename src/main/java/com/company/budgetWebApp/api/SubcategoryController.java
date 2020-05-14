@@ -31,13 +31,12 @@ public class SubcategoryController {
         this.categoryService = categoryService;
     }
 
-//    @GetMapping("/list")
-//    public String getSubcategories(Model model) {
-//        List<SubcategoryEntity> subcategoryEntityList = subcategoryService.findAll();
-//        System.out.println(subcategoryEntityList);
-//        model.addAttribute("subcategories", subcategoryService.findAll());
-//        return "appSubcategoriesList";
-//    }
+    @GetMapping("/list")
+    public String getSubcategories(Model model) {
+        List<SubcategoryEntity> subcategoryEntityList = subcategoryService.findAll();
+        model.addAttribute("subcategories", subcategoryService.findAll());
+        return "appSubcategoriesList";
+    }
 
     @GetMapping("/customize")
     public String customizeTable(Model model) {
@@ -59,10 +58,4 @@ public class SubcategoryController {
     private List<CategoryDTO> fetchCategoriesToDto() {
         return categoryService.mapCategoryListEntityToDto(categoryService.findAll());
     }
-
-    @ModelAttribute("subcategories")
-    private List<SubcategoryEntity> subcategoryEntityList() {
-        return subcategoryService.findAll();
-    }
-
 }

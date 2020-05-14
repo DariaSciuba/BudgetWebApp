@@ -7,8 +7,7 @@ import com.company.budgetWebApp.service.mapper.CategoryMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class CategoryService {
@@ -48,7 +47,7 @@ public class CategoryService {
 
     public CategoryEntity save(CategoryEntity category) {
         String categoryName = category.getName();
-        String categoryChecker = categoryName.substring(0,1).toUpperCase() + categoryName.substring(1).toLowerCase();
+        String categoryChecker = categoryName.substring(0,1).toUpperCase() + categoryName.substring(1);
         category.setName(categoryChecker);
         return categoryRepository.save(category);
     }
