@@ -21,8 +21,8 @@ public interface IncomeMapper {
     @Mapping(target = "subcategoryDTO.incomesDTO", ignore = true)
     IncomeDTO incomeEntityToDto(IncomeEntity incomeEntity);
 
-    @Named("mapToIncomeSet")
-    Set<IncomeEntity> mapToIncomeSet(List<IncomeDTO> incomeDTOS);
+    @Named("mapToIncomeList")
+    List<IncomeEntity> mapToIncomeList(List<IncomeDTO> incomeDTOS);
 
     @Named("mapToIncomeDTOList")
     List<IncomeDTO> mapToIncomeDTOList(Set<IncomeEntity> incomeEntities);

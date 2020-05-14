@@ -7,7 +7,10 @@ import com.company.budgetWebApp.service.mapper.CategoryMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.awt.*;
 import java.util.*;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CategoryService {
@@ -42,7 +45,9 @@ public class CategoryService {
     }
 
     public List<CategoryEntity> findAll() {
-        return categoryRepository.findAll();
+        return categoryRepository.findAll().stream()
+                .sorted(Comparator.comparing(CategoryEntity::getType).reversed().thenComparing(CategoryEntity::getName))
+                .collect(Collectors.toList());
     }
 
     public CategoryEntity save(CategoryEntity category) {

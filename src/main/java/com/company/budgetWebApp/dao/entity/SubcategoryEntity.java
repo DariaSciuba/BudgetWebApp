@@ -2,7 +2,8 @@ package com.company.budgetWebApp.dao.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import java.util.Set;
+import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name="subcategories")
@@ -18,20 +19,17 @@ public class SubcategoryEntity {
     private String name;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @Embedded
     private CategoryEntity category;
 
     @OneToMany
     @JoinColumn(name = "subcategory_id")
-    @ElementCollection
     @OrderBy("date ASC")
-    private Set<ExpenseEntity> expenses;
+    private List<ExpenseEntity> expenses;
 
     @OneToMany
     @JoinColumn(name = "subcategory_id")
-    @ElementCollection
     @OrderBy("date ASC")
-    private Set<IncomeEntity> incomes;
+    private List<IncomeEntity> incomes;
 
     public SubcategoryEntity() {
 
@@ -61,20 +59,35 @@ public class SubcategoryEntity {
         this.category = category;
     }
 
-    public Set<ExpenseEntity> getExpenses() {
+    public List<ExpenseEntity> getExpenses() {
         return expenses;
     }
 
-    public void setExpenses(Set<ExpenseEntity> expenses) {
+    public void setExpenses(List<ExpenseEntity> expenses) {
         this.expenses = expenses;
     }
 
-    public Set<IncomeEntity> getIncomes() {
+    public List<IncomeEntity> getIncomes() {
         return incomes;
     }
 
-    public void setIncomes(Set<IncomeEntity> incomes) {
+    public void setIncomes(List<IncomeEntity> incomes) {
         this.incomes = incomes;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        SubcategoryEntity that = (SubcategoryEntity) o;
+        return Objects.equals(id, that.id) &&
+                name.equals(that.name) &&
+                category.equals(that.category);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, category);
     }
 
     @Override

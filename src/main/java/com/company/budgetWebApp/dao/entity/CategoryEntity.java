@@ -2,7 +2,8 @@ package com.company.budgetWebApp.dao.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import java.util.Set;
+import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table (name = "categories")
@@ -20,9 +21,8 @@ public class CategoryEntity {
 
     @OneToMany
     @JoinColumn(name = "category_id")
-    @ElementCollection
     @OrderBy("name ASC")
-    private Set<SubcategoryEntity> subcategories;
+    private List<SubcategoryEntity> subcategories;
 
     public CategoryEntity() {
 
@@ -51,12 +51,27 @@ public class CategoryEntity {
     public void setType(String type) { this.type = type;
     }
 
-    public Set<SubcategoryEntity> getSubcategories() {
+    public List<SubcategoryEntity> getSubcategories() {
         return subcategories;
     }
 
-    public void setSubcategories(Set<SubcategoryEntity> subcategories) {
+    public void setSubcategories(List<SubcategoryEntity> subcategories) {
         this.subcategories = subcategories;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CategoryEntity that = (CategoryEntity) o;
+        return Objects.equals(id, that.id) &&
+                name.equals(that.name) &&
+                type.equals(that.type);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, type);
     }
 
     @Override

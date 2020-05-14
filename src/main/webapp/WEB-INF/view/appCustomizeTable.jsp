@@ -28,15 +28,22 @@
     <div class="backgroundContainer">
 
         <c:forEach var="category" items="${categories}">
-            <ul>
-                <li><c:out value="${category.categoryName}"/>
-                    <c:out value="${category.categoryType}"/></li>
-                <c:forEach var = "subcategory" items="${category.subcategoriesDTO}">
-                    <ul>
-                        <li><c:out value="${subcategory.subcategoryName}"/></li>
-                    </ul>
-                </c:forEach>
-            </ul>
+
+            <fieldset>
+                <c:forEach var="type" items="${category.categoryType}">
+                <legend><c:out value="${type}"/></legend>
+                <ul>
+                    <li><c:out value="${category.categoryName}"/></li>
+                    <c:forEach var="subcategory" items="${category.subcategoriesDTO}">
+                        <ul>
+                            <li><c:out value="${subcategory.subcategoryName}"/></li>
+                        </ul>
+                    </c:forEach>
+                    </c:forEach>
+                </ul>
+            </fieldset>
+
+
         </c:forEach>
 
     </div>

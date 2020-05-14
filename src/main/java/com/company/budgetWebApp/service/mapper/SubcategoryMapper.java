@@ -12,8 +12,8 @@ public interface SubcategoryMapper {
 
     @Mapping(target = "name", source = "subcategoryName")
     @Mapping(target = "category", source = "categoryDTO")
-    @Mapping(target = "expenses", source = "expensesDTO", qualifiedByName = "mapToExpenseSet")
-    @Mapping(target = "incomes", source = "incomesDTO", qualifiedByName = "mapToIncomeSet")
+    @Mapping(target = "expenses", source = "expensesDTO", qualifiedByName = "mapToExpenseList")
+    @Mapping(target = "incomes", source = "incomesDTO", qualifiedByName = "mapToIncomeList")
     SubcategoryEntity subcategoryDtoToEntity(SubcategoryDTO subcategoryDTO);
 
     @InheritInverseConfiguration
@@ -22,14 +22,10 @@ public interface SubcategoryMapper {
     @Mapping(target = "incomesDTO", source = "incomes", qualifiedByName = "mapToIncomeDTOList")
     SubcategoryDTO subcategoryEntityToDto(SubcategoryEntity subcategoryEntity);
 
-    List<SubcategoryEntity> subcategoryDtosToEntity(List<SubcategoryDTO> subcategoryDTOS);
-
-    List<SubcategoryDTO> subcategoryEntityToDtos(List<SubcategoryEntity> subcategoryEntities);
-
-    @Named("mapToSubcategorySet")
-    Set<SubcategoryEntity> mapToSubcategorySet(List<SubcategoryDTO> subcategoryDTOS);
+    @Named("mapToSubcategoryList")
+    List<SubcategoryEntity> mapToSubcategoryList(List<SubcategoryDTO> subcategoryDTOS);
 
     @Named("mapToSubcategoryDTOList")
-    List<SubcategoryDTO> mapToSubcategoryDTOList(Set<SubcategoryEntity> subcategoryEntities);
+    List<SubcategoryDTO> mapToSubcategoryDTOList(List<SubcategoryEntity> subcategoryEntities);
 
 }

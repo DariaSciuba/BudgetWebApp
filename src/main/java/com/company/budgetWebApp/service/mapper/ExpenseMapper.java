@@ -18,8 +18,8 @@ public interface ExpenseMapper {
     @Mapping(target = "subcategoryDTO.expensesDTO", ignore = true)
     ExpenseDTO expenseEntityToDto(ExpenseEntity expenseEntity);
 
-    @Named("mapToExpenseSet")
-    Set<ExpenseEntity> mapToExpenseSet(List<ExpenseDTO> expenseDTOS);
+    @Named("mapToExpenseList")
+    List<ExpenseEntity> mapToExpenseList(List<ExpenseDTO> expenseDTOS);
 
     @Named("mapToExpenseDTOList")
     List<ExpenseDTO> mapToExpenseDTOList(Set<ExpenseEntity> expenseEntities);

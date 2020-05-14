@@ -14,7 +14,7 @@ public interface CategoryMapper {
 
     @Mapping(target = "name", source = "categoryName")
     @Mapping(target = "type", source = "categoryType")
-    @Mapping(target = "subcategories", source = "subcategoriesDTO", qualifiedByName = "mapToSubcategorySet")
+    @Mapping(target = "subcategories", source = "subcategoriesDTO", qualifiedByName = "mapToSubcategoryList")
     CategoryEntity categoryDtoToEntity(CategoryDTO categoryDTO);
 
     @InheritInverseConfiguration

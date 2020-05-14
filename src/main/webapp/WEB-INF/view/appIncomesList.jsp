@@ -12,6 +12,9 @@
 <body>
     <%@ include file="header.jsp" %>
 
+    <aside>
+        <%@ include file="appAddIncome.jsp"%>
+    </aside>
 
     <main>
 
@@ -20,7 +23,6 @@
         <div class="backgroundContainer">
             <table>
                 <tr>
-                    <th>ID</th>
                     <th>Date</th>
                     <th>Category</th>
                     <th>Amount</th>
@@ -30,7 +32,6 @@
 
                 <c:forEach var = "income" items = "${incomes}">
                     <tr>
-                        <td><c:out value = "${income.id}"/></td>
                         <td><c:out value = "${income.date}"/></td>
                         <td><c:out value = "${income.subcategory.name}"/></td>
                         <td><c:out value = "${income.amount}"/></td>
@@ -39,9 +40,6 @@
                 </c:forEach>
 
             </table>
-
-            <a href="/app/income/add"><button class="link-button">Add new income!</button></a>
-
         </div>
 
     </main>

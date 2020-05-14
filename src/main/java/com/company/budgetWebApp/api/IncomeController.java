@@ -33,13 +33,8 @@ public class IncomeController {
     @GetMapping("/list")
     public String getIncomes(Model model) {
         model.addAttribute("incomes", incomeService.findAll());
-        return "appIncomesList";
-    }
-
-    @GetMapping("/add")
-    public String addIncome(Model model) {
         model.addAttribute("newIncomeDto", new IncomeDTO());
-        return "appAddIncome";
+        return "appIncomesList";
     }
 
     @PostMapping("/add")

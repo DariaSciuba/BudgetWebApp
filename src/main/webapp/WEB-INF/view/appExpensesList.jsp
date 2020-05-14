@@ -12,6 +12,10 @@
 <body>
     <%@ include file="header.jsp" %>
 
+    <aside>
+        <%@ include file="appAddExpense.jsp"%>
+    </aside>
+
     <main>
 
         <h1>Expenses List</h1>
@@ -19,17 +23,14 @@
         <div class="backgroundContainer">
             <table>
                 <tr>
-                    <th>ID</th>
                     <th>Date</th>
                     <th>Category</th>
                     <th>Amount</th>
                     <th>Note</th>
 
                 </tr>
-
                 <c:forEach var = "expense" items = "${expenses}">
                     <tr>
-                        <td><c:out value = "${expense.id}"/></td>
                         <td><c:out value = "${expense.date}"/></td>
                         <td><c:out value = "${expense.subcategory.name}"/></td>
                         <td><c:out value = "${expense.amount}"/></td>
@@ -38,8 +39,6 @@
                 </c:forEach>
 
             </table>
-
-            <a href="/app/expense/add"><button class="link-button">Add new expense!</button></a>
 
         </div>
 

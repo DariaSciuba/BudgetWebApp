@@ -30,7 +30,7 @@ public class SubcategoryService {
     }
 
     public List<SubcategoryDTO> mapSubcategoryListEntityToDto(List<SubcategoryEntity> subcategoryEntityList) {
-        return subcategoryMapper.subcategoryEntityToDtos(subcategoryEntityList);
+        return subcategoryMapper.mapToSubcategoryDTOList(subcategoryEntityList);
     }
 
     public Optional<SubcategoryEntity> findById(Long id) {
