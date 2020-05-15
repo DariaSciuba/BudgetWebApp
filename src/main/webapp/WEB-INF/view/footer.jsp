@@ -1,3 +1,3 @@
     <footer>
-        <p class="center">Copyright Personal Budget</p>
+        Copyright Personal Budget
     </footer>

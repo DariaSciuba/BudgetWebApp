@@ -18,22 +18,22 @@
 
     <main>
 
-        <h1>Expenses List</h1>
+        <h3>Expenses List</h3>
 
         <div class="backgroundContainer">
             <table>
                 <tr>
                     <th>Date</th>
-                    <th>Category</th>
                     <th>Amount</th>
+                    <th>Category</th>
                     <th>Note</th>
 
                 </tr>
                 <c:forEach var = "expense" items = "${expenses}">
                     <tr>
                         <td><c:out value = "${expense.date}"/></td>
+                        <td style="text-align:right"><c:out value = "${expense.amount}"/></td>
                         <td><c:out value = "${expense.subcategory.name}"/></td>
-                        <td><c:out value = "${expense.amount}"/></td>
                         <td><c:out value = "${expense.note}"/></td>
                     </tr>
                 </c:forEach>

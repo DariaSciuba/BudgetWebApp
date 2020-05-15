@@ -7,7 +7,6 @@ import java.util.Objects;
 
 @Entity
 @Table(name="subcategories")
-@Embeddable
 public class SubcategoryEntity {
 
     @Id
@@ -23,12 +22,10 @@ public class SubcategoryEntity {
 
     @OneToMany
     @JoinColumn(name = "subcategory_id")
-    @OrderBy("date ASC")
     private List<ExpenseEntity> expenses;
 
     @OneToMany
     @JoinColumn(name = "subcategory_id")
-    @OrderBy("date ASC")
     private List<IncomeEntity> incomes;
 
     public SubcategoryEntity() {

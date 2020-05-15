@@ -1,13 +1,16 @@
 package com.company.budgetWebApp.service;
 
+import com.company.budgetWebApp.dao.entity.CategoryEntity;
 import com.company.budgetWebApp.dao.entity.IncomeEntity;
 import com.company.budgetWebApp.dao.repository.IncomeRepository;
 import com.company.budgetWebApp.service.dto.IncomeDTO;
 import com.company.budgetWebApp.service.mapper.IncomeMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class IncomeService {
@@ -30,7 +33,10 @@ public class IncomeService {
 
     public Optional<IncomeEntity> findById(Long id) { return incomeRepository.findById(id); }
 
-    public List<IncomeEntity> findAll() { return incomeRepository.findAll(); }
+    public List<IncomeEntity> findAll() {
+        return incomeRepository.findAll().stream()
+                .sorted(Comparator.comparing(IncomeEntity::getDate))
+                .collect(Collectors.toList()); }
 
     public IncomeEntity save(IncomeEntity incomeEntity) { return incomeRepository.save(incomeEntity); }
 

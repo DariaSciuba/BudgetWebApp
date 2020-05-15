@@ -8,14 +8,14 @@
     --main-font-color: #095309;
 }
 
+html {
+    overflow-y: scroll;
+}
+
 body {
     background-color: var(--background-color);
     font-family: Calibri;
-    margin: 0 50px;
-}
-
-.center {
-    text-align: center;
+    margin: auto;
 }
 
 /*--Table edition--*/
@@ -73,6 +73,7 @@ input[type=submit]:hover {
     border-radius: 5px;
     background-color: #f2f2f2;
     padding: 20px;
+    margin-bottom: 20px;
 }
 
 .link-button {
@@ -132,6 +133,7 @@ main {
 aside {
     clear: both;
     width: 40%;
+    min-height: 90%;
     float: left;
     margin: 0px 15px;
 }
@@ -147,13 +149,12 @@ aside {
 
 footer {
     background-color: #91912A;
-    width: 100%;
-    margin: 0 auto;
-    z-index: 1;
     color: #0d2d14;
-    height: 40px;
-    bottom: 0;
+    padding: 5px 0;
+    text-align: center;
+    width: 100%;
     position: fixed;
+    bottom:0;
     clear: both;
 }
 

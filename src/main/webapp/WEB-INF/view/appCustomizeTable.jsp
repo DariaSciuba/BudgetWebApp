@@ -24,16 +24,13 @@
 </aside>
 
 <main>
-    <h1>Categories Schema</h1>
+    <h3>Categories Schema</h3>
     <div class="backgroundContainer">
 
         <c:forEach var="category" items="${categories}">
-
-            <fieldset>
                 <c:forEach var="type" items="${category.categoryType}">
-                <legend><c:out value="${type}"/></legend>
                 <ul>
-                    <li><c:out value="${category.categoryName}"/></li>
+                    <li><c:out value="${category.categoryName}"/> | <c:out value="${type}"/></li>
                     <c:forEach var="subcategory" items="${category.subcategoriesDTO}">
                         <ul>
                             <li><c:out value="${subcategory.subcategoryName}"/></li>
@@ -41,9 +38,6 @@
                     </c:forEach>
                     </c:forEach>
                 </ul>
-            </fieldset>
-
-
         </c:forEach>
 
     </div>
