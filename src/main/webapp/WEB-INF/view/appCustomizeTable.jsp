@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="webjars/bootstrap/3.3.7/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="/main.css">
+
     <title>Customize</title>
 </head>
 
@@ -28,16 +29,16 @@
     <div class="backgroundContainer">
 
         <c:forEach var="category" items="${categories}">
-                <c:forEach var="type" items="${category.categoryType}">
+            <c:forEach var="type" items="${category.categoryType}">
                 <ul>
-                    <li><c:out value="${category.categoryName}"/> | <c:out value="${type}"/></li>
-                    <c:forEach var="subcategory" items="${category.subcategoriesDTO}">
-                        <ul>
-                            <li><c:out value="${subcategory.subcategoryName}"/></li>
-                        </ul>
-                    </c:forEach>
-                    </c:forEach>
+                <li><c:out value="${category.categoryName}"/> | <c:out value="${type}"/></li>
+                <c:forEach var="subcategory" items="${category.subcategoriesDTO}">
+                    <ul>
+                        <li><c:out value="${subcategory.subcategoryName}"/></li>
+                    </ul>
+                </c:forEach>
                 </ul>
+            </c:forEach>
         </c:forEach>
 
     </div>

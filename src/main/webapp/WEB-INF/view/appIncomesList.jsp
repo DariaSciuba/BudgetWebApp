@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
     <link rel="stylesheet" href="/main.css">
+    <link rel="stylesheet" href="/fontello/css/fontello.css">
+
     <title>Incomes</title>
 </head>
 
@@ -21,26 +23,41 @@
         <h3>Incomes List</h3>
 
         <div class="backgroundContainer">
-            <table>
-                <tr>
-                    <th>Date</th>
-                    <th>Amount</th>
-                    <th>Category</th>
-                    <th>Note</th>
 
-                </tr>
-
-                <c:forEach var = "income" items = "${incomes}">
-                    <tr>
-                        <td><c:out value = "${income.date}"/></td>
-                        <td style="text-align:right"><c:out value = "${income.amount}"/></td>
-                        <td><c:out value = "${income.subcategory.name}"/></td>
-                        <td><c:out value = "${income.note}"/></td>
-                    </tr>
-                </c:forEach>
-
-            </table>
+            <c:forEach var="income" items="${incomes}">
+                <button class="accordion"><c:out value="${income.date}"/></button>
+                <div class="panel">
+                    <table>
+                        <tr>
+                            <td><c:out value="${income.amount}"/></td>
+                            <td><c:out value="${income.subcategory.name}"/></td>
+                            <td><c:out value="${income.note}"/></td>
+                            <td>
+                                <i class="icon-delete red"></i>
+                                <i class="icon-update green"></i>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </c:forEach>
         </div>
+
+        <script>
+            var acc = document.getElementsByClassName("accordion");
+            var i;
+
+            for (i = 0; i < acc.length; i++) {
+                acc[i].addEventListener("click", function() {
+                    this.classList.toggle("active");
+                    var panel = this.nextElementSibling;
+                    if (panel.style.display === "block") {
+                        panel.style.display = "none";
+                    } else {
+                        panel.style.display = "block";
+                    }
+                });
+            }
+        </script>
 
     </main>
 

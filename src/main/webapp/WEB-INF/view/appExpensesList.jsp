@@ -2,49 +2,66 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="webjars/bootstrap/3.3.7/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="/main.css">
+    <link rel="stylesheet" href="/fontello/css/fontello.css">
+
     <title>Expenses</title>
 </head>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <body>
-    <%@ include file="header.jsp" %>
+<%@ include file="header.jsp" %>
 
-    <aside>
-        <%@ include file="appAddExpense.jsp"%>
-    </aside>
+<aside>
+    <%@ include file="appAddExpense.jsp" %>
+</aside>
 
-    <main>
+<main>
 
-        <h3>Expenses List</h3>
+    <h3>Expenses List</h3>
 
-        <div class="backgroundContainer">
-            <table>
-                <tr>
-                    <th>Date</th>
-                    <th>Amount</th>
-                    <th>Category</th>
-                    <th>Note</th>
+    <div class="backgroundContainer">
 
-                </tr>
-                <c:forEach var = "expense" items = "${expenses}">
+        <c:forEach var="expense" items="${expenses}">
+            <button class="accordion"><c:out value="${expense.date}"/></button>
+            <div class="panel">
+                <table>
                     <tr>
-                        <td><c:out value = "${expense.date}"/></td>
-                        <td style="text-align:right"><c:out value = "${expense.amount}"/></td>
-                        <td><c:out value = "${expense.subcategory.name}"/></td>
-                        <td><c:out value = "${expense.note}"/></td>
+                        <td><c:out value="${expense.amount}"/></td>
+                        <td><c:out value="${expense.subcategory.name}"/></td>
+                        <td><c:out value="${expense.note}"/></td>
+                        <td>
+                            <i class="icon-delete red"></i>
+                            <i class="icon-update green"></i>
+                        </td>
                     </tr>
-                </c:forEach>
+                </table>
+            </div>
+        </c:forEach>
+    </div>
 
-            </table>
+    <script>
+        var acc = document.getElementsByClassName("accordion");
+        var i;
 
-        </div>
+        for (i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function () {
+                this.classList.toggle("active");
+                var panel = this.nextElementSibling;
+                if (panel.style.display === "block") {
+                    panel.style.display = "none";
+                } else {
+                    panel.style.display = "block";
+                }
+            });
+        }
+    </script>
 
-    </main>
+</main>
 
-    <%@ include file="footer.jsp" %>
+<%@ include file="footer.jsp" %>
 
 </body>
 </html>
