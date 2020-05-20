@@ -52,7 +52,7 @@ public class CategoryController {
         CategoryEntity categoryEntity = categoryService.findById(id).get();
         CategoryDTO categoryDTO = categoryService.mapCategoryEntityToDto(categoryEntity);
         model.addAttribute("categoryDTO",categoryDTO);
-        return "redirect:/app/subcategory/customize";
+        return "appEditCategory";
     }
 
     @PostMapping("/edit/{id}")

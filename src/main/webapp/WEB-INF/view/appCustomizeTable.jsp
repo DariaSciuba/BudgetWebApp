@@ -58,7 +58,7 @@
 
     <script>
         function confirmDeleteCategory(id, name, subcategory) {
-            if(subcategory === "[]") {
+            if(subcategory === "[]") {      // condition to change
                 if (confirm("Are you sure you want to delete category \"" + name + "\"?")) {
                     window.location.href = "/app/category/delete/" + id;
                 }
@@ -70,7 +70,7 @@
 
     <script>
         function confirmDeleteSubcategory(id, name, expenses, incomes) {
-            if(expenses ==="[]" && incomes === "[]") {
+            if(expenses ==="[]" && incomes === "[]") {      // condition to change
                 if (confirm("Are you sure you want to delete subcategory \"" + name + "\"?")) {
                     window.location.href = "/app/subcategory/delete/" + id;
                 }

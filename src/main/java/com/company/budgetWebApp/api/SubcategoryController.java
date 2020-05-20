@@ -67,7 +67,7 @@ public class SubcategoryController {
         SubcategoryEntity subcategoryEntity = subcategoryService.findById(id).get();
         SubcategoryDTO subcategoryDTO = subcategoryService.mapSubcategoryEntityToDto(subcategoryEntity);
         model.addAttribute("subcategoryDTO", subcategoryDTO);
-        return "redirect:/app/subcategory/customize";
+        return "appEditSubcategory";
     }
 
     @PostMapping("/edit/{id}")

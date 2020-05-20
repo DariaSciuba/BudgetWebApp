@@ -1,11 +1,9 @@
 package com.company.budgetWebApp.api;
 
-import com.company.budgetWebApp.dao.entity.ExpenseEntity;
 import com.company.budgetWebApp.dao.entity.IncomeEntity;
 import com.company.budgetWebApp.dao.entity.SubcategoryEntity;
 import com.company.budgetWebApp.service.IncomeService;
 import com.company.budgetWebApp.service.SubcategoryService;
-import com.company.budgetWebApp.service.dto.ExpenseDTO;
 import com.company.budgetWebApp.service.dto.IncomeDTO;
 import com.company.budgetWebApp.service.dto.SubcategoryDTO;
 import org.springframework.beans.factory.annotation.Autowired;
