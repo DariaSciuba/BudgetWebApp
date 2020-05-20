@@ -33,8 +33,10 @@
                             <td><c:out value="${income.subcategory.name}"/></td>
                             <td><c:out value="${income.note}"/></td>
                             <td>
-                                <i class="icon-delete red"></i>
-                                <i class="icon-update green"></i>
+                                <a href="#" onclick="confirmDeleteIncome(${income.id},${income.amount},'${income.subcategory.name}')">
+                                    <i class="icon-delete red"></i></a>
+                                <a href="/app/income/edit/${income.id}">
+                                    <i class="icon-update green"></i></a>
                             </td>
                         </tr>
                     </table>
@@ -56,6 +58,14 @@
                         panel.style.display = "block";
                     }
                 });
+            }
+        </script>
+
+        <script>
+            function confirmDeleteIncome(id, amount, subcategory) {
+                if (confirm("Are you sure you want to delete income \"" + amount + "\" from category \"" + subcategory + "\"?")) {
+                    window.location.href = "/app/income/delete/" + id;
+                }
             }
         </script>
 

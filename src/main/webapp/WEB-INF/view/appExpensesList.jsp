@@ -15,7 +15,7 @@
 <%@ include file="header.jsp" %>
 
 <aside>
-    <%@ include file="appAddExpense.jsp" %>
+     <%@ include file="appAddExpense.jsp" %>
 </aside>
 
 <main>
@@ -33,8 +33,10 @@
                         <td><c:out value="${expense.subcategory.name}"/></td>
                         <td><c:out value="${expense.note}"/></td>
                         <td>
-                            <i class="icon-delete red"></i>
-                            <i class="icon-update green"></i>
+                            <a href="#" onclick="confirmDeleteExpense(${expense.id},${expense.amount},'${expense.subcategory.name}')">
+                                <i class="icon-delete red"></i></a>
+                            <a href="/app/expense/edit/${expense.id}">
+                                <i class="icon-update green"></i></a>
                         </td>
                     </tr>
                 </table>
@@ -56,6 +58,14 @@
                     panel.style.display = "block";
                 }
             });
+        }
+    </script>
+
+    <script>
+        function confirmDeleteExpense(id, amount, subcategory) {
+            if (confirm("Are you sure you want to delete expense \"" + amount + "\" from category \"" + subcategory + "\"?")) {
+                window.location.href = "/app/expense/delete/" + id;
+            }
         }
     </script>
 
