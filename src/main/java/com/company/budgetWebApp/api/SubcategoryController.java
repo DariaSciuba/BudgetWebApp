@@ -9,10 +9,7 @@ import com.company.budgetWebApp.service.SubcategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -58,4 +55,29 @@ public class SubcategoryController {
     private List<CategoryDTO> fetchCategoriesToDto() {
         return categoryService.mapCategoryListEntityToDto(categoryService.findAll());
     }
+
+    @GetMapping("/delete/{id}")
+    public String deleteSubcategory(@PathVariable Long id) {
+        subcategoryService.deleteById(id);
+        return "redirect:/app/subcategory/customize";
+    }
+
+    @GetMapping("/edit/{id}")
+    public String editSubcategory(@PathVariable Long id, Model model) {
+        SubcategoryEntity subcategoryEntity = subcategoryService.findById(id).get();
+        SubcategoryDTO subcategoryDTO = subcategoryService.mapSubcategoryEntityToDto(subcategoryEntity);
+        model.addAttribute("subcategoryDTO", subcategoryDTO);
+        return "redirect:/app/subcategory/customize";
+    }
+
+    @PostMapping("/edit/{id}")
+    public String editSubcategoryProcessForm(@PathVariable Long id,
+                                             @ModelAttribute("subcategoryDTO") @Valid SubcategoryDTO subcategoryDTO) {
+       SubcategoryEntity subcategoryEntity = subcategoryService.mapSubcategoryDtoToEntity(subcategoryDTO);
+       subcategoryService.save(subcategoryEntity);
+        return "redirect:/app/subcategory/customize";
+    }
+
 }
+
+
