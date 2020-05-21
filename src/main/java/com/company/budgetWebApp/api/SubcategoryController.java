@@ -1,6 +1,8 @@
 package com.company.budgetWebApp.api;
 
 import com.company.budgetWebApp.dao.entity.CategoryEntity;
+import com.company.budgetWebApp.dao.entity.ExpenseEntity;
+import com.company.budgetWebApp.dao.entity.IncomeEntity;
 import com.company.budgetWebApp.dao.entity.SubcategoryEntity;
 import com.company.budgetWebApp.service.dto.CategoryDTO;
 import com.company.budgetWebApp.service.dto.SubcategoryDTO;
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.EntityManager;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -73,8 +76,12 @@ public class SubcategoryController {
     @PostMapping("/edit/{id}")
     public String editSubcategoryProcessForm(@PathVariable Long id,
                                              @ModelAttribute("subcategoryDTO") @Valid SubcategoryDTO subcategoryDTO) {
-       SubcategoryEntity subcategoryEntity = subcategoryService.mapSubcategoryDtoToEntity(subcategoryDTO);
-       subcategoryService.save(subcategoryEntity);
+        SubcategoryEntity subcategoryEntity = subcategoryService.mapSubcategoryDtoToEntity(subcategoryDTO);
+        List<IncomeEntity> incomes = subcategoryService.findById(id).get().getIncomes();
+        subcategoryEntity.setIncomes(incomes);
+        List<ExpenseEntity> expenses = subcategoryService.findById(id).get().getExpenses();
+        subcategoryEntity.setExpenses(expenses);
+        subcategoryService.save(subcategoryEntity);
         return "redirect:/app/subcategory/customize";
     }
 

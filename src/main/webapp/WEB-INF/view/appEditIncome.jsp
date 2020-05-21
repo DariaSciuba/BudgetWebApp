@@ -27,8 +27,7 @@
             <form:input id="date" type="date" path="dateDTO" class="form-control" required="true"/>
 
             <label for="subcategory">Subcategory type</label>
-            <form:select id="subcategory" path="subcategoryDTO.id" class="form-control" required="true">
-                <form:option value="">${incomeDTO.subcategoryDTO.subcategoryName}</form:option>
+            <form:select id="subcategory" path="subcategoryDTO.id" placeholder="${incomeDTO.subcategoryDTO.subcategoryName}" class="form-control" required="true">
                 <form:options  itemValue="id" itemLabel="subcategoryName" items="${subcategories}"/>--%>
             </form:select>
 

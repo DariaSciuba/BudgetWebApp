@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="/main.css">
     <title>Edit table</title>
 </head>
+<body>
+<%@ include file="header.jsp" %>
 <aside>
     <h3>Edit subcategory!</h3>
 
@@ -18,8 +20,7 @@
             <form:input id="name" type="text" path="subcategoryName" placeholder="${subcategoryDTO.subcategoryName}" class="form-control" required="true"/>
 
             <label for="category">Category type</label>
-            <form:select id="category" path="categoryDTO.id" class="form-control" required="true">
-                <form:option value="">${subcategoryDTO.categoryDTO.categoryName}</form:option>
+            <form:select id="category" path="categoryDTO.id" placeholder="${subcategoryDTO.categoryDTO.categoryName}" class="form-control" required="true">
                 <form:options itemValue="id" itemLabel="categoryName" items="${categories}"/>
             </form:select>
             <input type="submit" value="Edit"/>

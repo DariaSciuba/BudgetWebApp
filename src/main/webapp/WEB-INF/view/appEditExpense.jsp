@@ -11,9 +11,7 @@
 </head>
 
 <body>
-
 <%@ include file="header.jsp" %>
-
 <aside>
     <h3>Edit expense!</h3>
 
@@ -27,8 +25,7 @@
             <form:input id="date" type="date" path="dateDTO" class="form-control" required="true"/>
 
             <label for="subcategory">Subcategory type</label>
-            <form:select id="subcategory" path="subcategoryDTO.id" class="form-control" required="true">
-                <form:option value="">${expenseDTO.subcategoryDTO.subcategoryName}</form:option>
+            <form:select id="subcategory" path="subcategoryDTO.id"  placeholder="${expenseDTO.subcategoryDTO.subcategoryName}" class="form-control" required="true">
                 <form:options  itemValue="id" itemLabel="subcategoryName" items="${subcategories}"/>--%>
             </form:select>
 

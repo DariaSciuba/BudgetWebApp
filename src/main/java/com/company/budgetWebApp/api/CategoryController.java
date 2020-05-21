@@ -1,9 +1,11 @@
 package com.company.budgetWebApp.api;
 
 import com.company.budgetWebApp.dao.entity.CategoryEntity;
+import com.company.budgetWebApp.dao.entity.SubcategoryEntity;
 import com.company.budgetWebApp.service.SubcategoryService;
 import com.company.budgetWebApp.service.dto.CategoryDTO;
 import com.company.budgetWebApp.service.CategoryService;
+import com.company.budgetWebApp.service.dto.SubcategoryDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -52,12 +54,14 @@ public class CategoryController {
         CategoryEntity categoryEntity = categoryService.findById(id).get();
         CategoryDTO categoryDTO = categoryService.mapCategoryEntityToDto(categoryEntity);
         model.addAttribute("categoryDTO",categoryDTO);
-        return "appEditCategory";
+        return "appEditCat";
     }
 
     @PostMapping("/edit/{id}")
     public String editCategoryProcessForm(@PathVariable Long id, @ModelAttribute("categoryDTO") @Valid CategoryDTO categoryDTO) {
        CategoryEntity categoryEntity = categoryService.mapCategoryDtoToEntity(categoryDTO);
+       List<SubcategoryEntity> subcategories = categoryService.findById(id).get().getSubcategories();
+       categoryEntity.setSubcategories(subcategories);
        categoryService.save(categoryEntity);
         return "redirect:/app/subcategory/customize";
     }
