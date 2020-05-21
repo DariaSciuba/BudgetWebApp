@@ -34,7 +34,7 @@ Project is created with:
 
 * Bootstrap 4
 
-### Fuctionality
+### Functionality
 
 ---
 

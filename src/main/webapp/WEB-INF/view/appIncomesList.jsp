@@ -22,25 +22,26 @@
         <h3>Incomes List</h3>
 
         <div class="backgroundContainer">
-
-            <c:forEach var="income" items="${incomes}">
-                <button class="accordion"><c:out value="${income.date}"/></button>
+        <c:forEach var="date" items="${incomes}">
+                <button class="accordion"><c:out value="${date.key}"/></button>
                 <div class="panel">
                     <table>
+                        <c:forEach var="income" items="${date.value}">
                         <tr>
-                            <td><c:out value="${income.amount}"/></td>
-                            <td><c:out value="${income.subcategory.name}"/></td>
-                            <td><c:out value="${income.note}"/></td>
-                            <td>
-                                <a href="#" onclick="confirmDeleteIncome(${income.id},${income.amount},'${income.subcategory.name}')">
-                                    <i class="icon-delete red"></i></a>
-                                <a href="/app/income/edit/${income.id}">
-                                    <i class="icon-update green"></i></a>
-                            </td>
+                                <td><c:out value="${income.amount}"/></td>
+                                <td><c:out value="${income.subcategory.name}"/></td>
+                                <td><c:out value="${income.note}"/></td>
+                                <td>
+                                    <a href="#" onclick="confirmDeleteIncome(${income.id},${income.amount},'${income.subcategory.name}')">
+                                        <i class="icon-delete red"></i></a>
+                                    <a href="/app/income/edit/${income.id}">
+                                        <i class="icon-update green"></i></a>
+                                </td>
                         </tr>
+                        </c:forEach>
                     </table>
                 </div>
-            </c:forEach>
+        </c:forEach>
         </div>
 
         <script>

@@ -1,15 +1,12 @@
 package com.company.budgetWebApp.service;
 
-import com.company.budgetWebApp.dao.entity.CategoryEntity;
 import com.company.budgetWebApp.dao.entity.IncomeEntity;
 import com.company.budgetWebApp.dao.repository.IncomeRepository;
 import com.company.budgetWebApp.service.dto.IncomeDTO;
 import com.company.budgetWebApp.service.mapper.IncomeMapper;
 import org.springframework.stereotype.Service;
 
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -23,11 +20,11 @@ public class IncomeService {
         this.incomeMapper = incomeMapper;
     }
 
-   public IncomeEntity mapIncomeDtoToEntity(IncomeDTO incomeDTO) {
+    public IncomeEntity mapIncomeDtoToEntity(IncomeDTO incomeDTO) {
         return incomeMapper.incomeDtoToEntity(incomeDTO);
    }
 
-   public IncomeDTO mapIncomeEntityToDto(IncomeEntity incomeEntity) {
+    public IncomeDTO mapIncomeEntityToDto(IncomeEntity incomeEntity) {
         return incomeMapper.incomeEntityToDto(incomeEntity);
     }
 
@@ -41,4 +38,17 @@ public class IncomeService {
     public IncomeEntity save(IncomeEntity incomeEntity) { return incomeRepository.save(incomeEntity); }
 
     public void deleteById(Long id) { incomeRepository.deleteById(id); }
+
+    public Map<Date, List<IncomeEntity>> findAllIncomesForDate() {
+        List<Date> dates = incomeRepository.findDatesFromIncomes().stream().sorted().collect(Collectors.toList());
+        Collections.sort(dates, Collections.reverseOrder());
+        List<IncomeEntity> incomesByDate;
+        Map<Date, List<IncomeEntity>> listIncomesForDate = new LinkedHashMap<>();
+
+        for (Date date : dates) {
+            incomesByDate = incomeRepository.findIncomesByDate(date);
+            listIncomesForDate.put(date, incomesByDate);
+        }
+        return listIncomesForDate;
+    }
 }

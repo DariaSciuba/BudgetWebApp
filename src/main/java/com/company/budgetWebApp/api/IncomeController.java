@@ -29,7 +29,7 @@ public class IncomeController {
 
     @GetMapping("/list")
     public String getIncomes(Model model) {
-        model.addAttribute("incomes", incomeService.findAll());
+        model.addAttribute("incomes", incomeService.findAllIncomesForDate());
         model.addAttribute("newIncomeDto", new IncomeDTO());
         return "appIncomesList";
     }

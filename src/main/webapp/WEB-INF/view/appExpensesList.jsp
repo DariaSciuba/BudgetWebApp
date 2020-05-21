@@ -23,10 +23,11 @@
 
     <div class="backgroundContainer">
 
-        <c:forEach var="expense" items="${expenses}">
-            <button class="accordion"><c:out value="${expense.date}"/></button>
+        <c:forEach var="date" items="${expenses}">
+            <button class="accordion"><c:out value="${date.key}"/></button>
             <div class="panel">
                 <table>
+                    <c:forEach var="expense" items="${date.value}">
                     <tr>
                         <td><c:out value="${expense.amount}"/></td>
                         <td><c:out value="${expense.subcategory.name}"/></td>
@@ -38,6 +39,7 @@
                                 <i class="icon-update green"></i></a>
                         </td>
                     </tr>
+                    </c:forEach>
                 </table>
             </div>
         </c:forEach>

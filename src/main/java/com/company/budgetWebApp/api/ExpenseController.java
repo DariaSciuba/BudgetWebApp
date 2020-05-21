@@ -29,7 +29,7 @@ public class ExpenseController {
 
     @GetMapping("/list")
     public String getExpenses(Model model) {
-        model.addAttribute("expenses", expenseService.findAll());
+        model.addAttribute("expenses", expenseService.findAllExpensesForDate());
         model.addAttribute("newExpenseDto", new ExpenseDTO());
         return "appExpensesList";
     }
@@ -45,7 +45,7 @@ public class ExpenseController {
 
     @ModelAttribute("subcategories")
     private List<SubcategoryDTO> fetchSubcategoriesToDto() {
-        return subcategoryService.mapSubcategoryListEntityToDto(subcategoryService.findAll());
+        return subcategoryService.mapSubcategoryListEntityToDto(subcategoryService.findSubcategoriesExpenses());
     }
 
     @GetMapping("/delete/{id}")

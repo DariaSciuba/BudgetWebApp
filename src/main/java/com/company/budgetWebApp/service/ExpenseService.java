@@ -1,16 +1,13 @@
 package com.company.budgetWebApp.service;
 
 import com.company.budgetWebApp.dao.entity.ExpenseEntity;
-import com.company.budgetWebApp.dao.entity.IncomeEntity;
 import com.company.budgetWebApp.dao.repository.ExpenseRepository;
 import com.company.budgetWebApp.service.dto.ExpenseDTO;
 import com.company.budgetWebApp.service.mapper.ExpenseMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -40,7 +37,8 @@ public class ExpenseService {
     public List<ExpenseEntity> findAll() {
         return expenseRepository.findAll().stream()
                 .sorted(Comparator.comparing(ExpenseEntity::getDate))
-                .collect(Collectors.toList()); }
+                .collect(Collectors.toList());
+    }
 
     public ExpenseEntity save(ExpenseEntity expense) {
         return expenseRepository.save(expense);
@@ -50,4 +48,16 @@ public class ExpenseService {
         expenseRepository.deleteById(id);
     }
 
+    public Map<Date, List<ExpenseEntity>> findAllExpensesForDate() {
+        List<Date> dates = expenseRepository.findDatesFromExpenses().stream().sorted().collect(Collectors.toList());
+        Collections.sort(dates, Collections.reverseOrder());
+        List<ExpenseEntity> expensesByDate;
+        Map<Date, List<ExpenseEntity>> listExpensesForDate = new LinkedHashMap<>();
+
+        for (Date date : dates) {
+            expensesByDate = expenseRepository.findExpensesByDate(date);
+            listExpensesForDate.put(date, expensesByDate);
+        }
+        return listExpensesForDate;
+    }
 }
