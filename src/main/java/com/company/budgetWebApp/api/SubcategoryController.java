@@ -32,10 +32,8 @@ public class SubcategoryController {
     }
 
     @GetMapping("/list")
-    public String getSubcategories(Model model) {
-        List<SubcategoryEntity> subcategoryEntityList = subcategoryService.findAll();
+    public void getSubcategories(Model model) {
         model.addAttribute("subcategories", subcategoryService.findAll());
-        return "appSubcategoriesList";
     }
 
     @GetMapping("/customize")

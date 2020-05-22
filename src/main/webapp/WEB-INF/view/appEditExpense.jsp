@@ -29,6 +29,11 @@
                 <form:options  itemValue="id" itemLabel="subcategoryName" items="${subcategories}"/>--%>
             </form:select>
 
+            <label for="account">Account</label>
+            <form:select id="account" type="text" path="accountDTO.id" placeholder="${expenseDTO.accountDTO.bankName}" class="form-control" required="true">
+                <form:options itemValue="id" itemLabel="bankName" items="${accounts}"/>
+            </form:select>
+
             <label for="note">Note</label>
             <form:input id="note" type="text" path="note" placeholder="${expenseDTO.note}"/>
 

@@ -1,7 +1,10 @@
 package com.company.budgetWebApp.api;
 
+import com.company.budgetWebApp.dao.entity.AccountEntity;
 import com.company.budgetWebApp.dao.entity.ExpenseEntity;
 import com.company.budgetWebApp.dao.entity.SubcategoryEntity;
+import com.company.budgetWebApp.service.AccountService;
+import com.company.budgetWebApp.service.dto.AccountDTO;
 import com.company.budgetWebApp.service.dto.ExpenseDTO;
 import com.company.budgetWebApp.service.dto.SubcategoryDTO;
 import com.company.budgetWebApp.service.ExpenseService;
@@ -20,11 +23,13 @@ public class ExpenseController {
 
     private final ExpenseService expenseService;
     private final SubcategoryService subcategoryService;
+    private final AccountService accountService;
 
     @Autowired
-    public ExpenseController(ExpenseService expenseService, SubcategoryService subcategoryService) {
+    public ExpenseController(ExpenseService expenseService, SubcategoryService subcategoryService, AccountService accountService) {
         this.expenseService = expenseService;
         this.subcategoryService = subcategoryService;
+        this.accountService = accountService;
     }
 
     @GetMapping("/list")
@@ -38,7 +43,11 @@ public class ExpenseController {
     public String addExpenseProcess(@ModelAttribute("newExpenseDto") @Valid ExpenseDTO expenseDTO) {
         ExpenseEntity expenseEntity = expenseService.mapExpenseDtoToEntity(expenseDTO);
         SubcategoryEntity subcategoryEntity = subcategoryService.findById(expenseDTO.getSubcategoryDTO().getId()).get();
+        AccountEntity accountEntity = accountService.findById(expenseDTO.getAccountDTO().getId()).get();
+
         expenseEntity.setSubcategory(subcategoryEntity);
+        expenseEntity.setAccount(accountEntity);
+
         expenseService.save(expenseEntity);
         return "redirect:/app/expense/list";
     }
@@ -46,6 +55,11 @@ public class ExpenseController {
     @ModelAttribute("subcategories")
     private List<SubcategoryDTO> fetchSubcategoriesToDto() {
         return subcategoryService.mapSubcategoryListEntityToDto(subcategoryService.findSubcategoriesExpenses());
+    }
+
+    @ModelAttribute("accounts")
+    private List<AccountDTO> fetchAccountsToDto() {
+        return accountService.mapAccountListEtityToDto(accountService.findAll());
     }
 
     @GetMapping("/delete/{id}")
@@ -66,7 +80,11 @@ public class ExpenseController {
     public String editExpenseProcessForm(@PathVariable Long id, @ModelAttribute("expenseDTO") @Valid ExpenseDTO expenseDTO) {
         ExpenseEntity expenseEntity = expenseService.mapExpenseDtoToEntity(expenseDTO);
         SubcategoryEntity subcategoryEntity = subcategoryService.findById(expenseDTO.getSubcategoryDTO().getId()).get();
+        AccountEntity accountEntity = accountService.findById(expenseDTO.getAccountDTO().getId()).get();
+
         expenseEntity.setSubcategory(subcategoryEntity);
+        expenseEntity.setAccount(accountEntity);
+
         expenseService.save(expenseEntity);
         return "redirect:/app/expense/list";
     }

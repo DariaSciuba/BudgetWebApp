@@ -18,6 +18,12 @@
                 <form:options itemValue="id" itemLabel="subcategoryName" items="${subcategories}"/>
             </form:select>
 
+            <label for="account">Note</label>
+            <form:select id="account" type="text" path="accountDTO.id" class="form-control" required="true">
+                <form:option value="">Choose account</form:option>
+                <form:options itemValue="id" itemLabel="bankName" items="${accounts}"/>
+            </form:select>
+
             <label for="note">Note</label>
             <form:input id="note" type="text" path="note"/>
 
