@@ -7,6 +7,7 @@ public class ExpenseDTO {
     private SubcategoryDTO subcategoryDTO;
     private double amount;
     private String note;
+    private AccountDTO accountDTO;
 
     public ExpenseDTO(){}
 
@@ -48,5 +49,13 @@ public class ExpenseDTO {
 
     public void setNote(String note) {
         this.note = note;
+    }
+
+    public AccountDTO getAccountDTO() {
+        return accountDTO;
+    }
+
+    public void setAccountDTO(AccountDTO accountDTO) {
+        this.accountDTO = accountDTO;
     }
 }

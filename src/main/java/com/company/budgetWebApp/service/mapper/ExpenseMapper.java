@@ -12,10 +12,12 @@ public interface ExpenseMapper {
 
     @Mapping(target = "date", source = "dateDTO", dateFormat = "yyyy-MM-dd")
     @Mapping(target = "subcategory", source = "subcategoryDTO")
+    @Mapping(target = "account", source = "accountDTO")
     ExpenseEntity expenseDtoToEntity(ExpenseDTO expenseDTO);
 
     @InheritInverseConfiguration
     @Mapping(target = "subcategoryDTO.expensesDTO", ignore = true)
+    @Mapping(target = "accountDTO.expensesDTO", ignore = true)
     ExpenseDTO expenseEntityToDto(ExpenseEntity expenseEntity);
 
     @Named("mapToExpenseList")

@@ -15,10 +15,12 @@ public interface IncomeMapper {
 
     @Mapping(target = "date", source = "dateDTO", dateFormat = "yyyy-MM-dd")
     @Mapping(target = "subcategory", source = "subcategoryDTO")
+    @Mapping(target = "account", source = "accountDTO")
     IncomeEntity incomeDtoToEntity(IncomeDTO incomeDTO);
 
     @InheritInverseConfiguration
     @Mapping(target = "subcategoryDTO.incomesDTO", ignore = true)
+    @Mapping(target = "accountDTO.incomesDTO", ignore = true)
     IncomeDTO incomeEntityToDto(IncomeEntity incomeEntity);
 
     @Named("mapToIncomeList")

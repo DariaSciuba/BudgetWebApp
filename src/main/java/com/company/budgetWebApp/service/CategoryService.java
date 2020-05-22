@@ -25,11 +25,11 @@ public class CategoryService {
     }
 
     public CategoryEntity mapCategoryDtoToEntity(CategoryDTO categoryDTO) {
-        return this.categoryMapper.categoryDtoToEntity(categoryDTO);
+        return categoryMapper.categoryDtoToEntity(categoryDTO);
     }
 
     public CategoryDTO mapCategoryEntityToDto(CategoryEntity categoryEntity) {
-        return this.categoryMapper.categoryEntityToDto(categoryEntity);
+        return categoryMapper.categoryEntityToDto(categoryEntity);
     }
 
     public List<CategoryEntity> mapCategoryListDtoToEntity(List<CategoryDTO> categoryDtos) {

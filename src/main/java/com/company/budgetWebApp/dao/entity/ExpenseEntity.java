@@ -2,6 +2,7 @@ package com.company.budgetWebApp.dao.entity;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Objects;
 
 @Entity
 @Table(name = "expenses")
@@ -21,6 +22,9 @@ public class ExpenseEntity {
     private double amount;
 
     private String note;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private AccountEntity account;
 
     public ExpenseEntity() {
 
@@ -64,6 +68,31 @@ public class ExpenseEntity {
 
     public void setNote(String note) {
         this.note = note;
+    }
+
+    public AccountEntity getAccount() {
+        return account;
+    }
+
+    public void setAccount(AccountEntity account) {
+        this.account = account;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ExpenseEntity that = (ExpenseEntity) o;
+        return Double.compare(that.amount, amount) == 0 &&
+                id.equals(that.id) &&
+                date.equals(that.date) &&
+                subcategory.equals(that.subcategory) &&
+                account.equals(that.account);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, date, subcategory, amount, account);
     }
 
     @Override

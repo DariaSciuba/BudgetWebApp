@@ -8,6 +8,7 @@ public class IncomeDTO {
     private SubcategoryDTO subcategoryDTO;
     private double amount;
     private String note;
+    private AccountDTO accountDTO;
 
     public Long getId() {
         return id;
@@ -47,5 +48,13 @@ public class IncomeDTO {
 
     public void setNote(String note) {
         this.note = note;
+    }
+
+    public AccountDTO getAccountDTO() {
+        return accountDTO;
+    }
+
+    public void setAccountDTO(AccountDTO accountDTO) {
+        this.accountDTO = accountDTO;
     }
 }
