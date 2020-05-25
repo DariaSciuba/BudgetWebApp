@@ -13,15 +13,21 @@
             <form:input id="date" type="date" path="dateDTO" class="form-control" required="true"/>
 
             <label for="subcategory">Subcategory type</label>
-            <form:select id="subcategory" path="subcategoryDTO.id" class="form-control" required="true">
+            <form:select id="subcategory"  path="subcategoryDTO.id" class="form-control" required="true">
                 <form:option value="">Choose subcategory</form:option>
                 <form:options itemValue="id" itemLabel="subcategoryName" items="${subcategories}"/>
             </form:select>
 
-            <label for="account">Note</label>
+            <label for="account">Account</label>
             <form:select id="account" type="text" path="accountDTO.id" class="form-control" required="true">
                 <form:option value="">Choose account</form:option>
                 <form:options itemValue="id" itemLabel="bankName" items="${accounts}"/>
+            </form:select>
+
+            <label for="incomeSource">Income source</label>
+            <form:select id="incomeSource" type="text" path="incomeSourceDTO.id" class="form-control" required="true">
+                <form:option value="">Choose income source</form:option>
+                <form:options itemValue="id" itemLabel="companyName" items="${incomeSources}"/>
             </form:select>
 
             <label for="note">Note</label>

@@ -30,6 +30,7 @@
                         <tr>
                                 <td><c:out value="${income.amount}"/></td>
                                 <td><c:out value="${income.subcategory.name}"/></td>
+                                <td><c:out value="${income.incomeSource.companyName}"/></td>
                                 <td><c:out value="${income.note}"/></td>
                                 <td>
                                     <a href="#" onclick="confirmDeleteIncome(${income.id},${income.amount},'${income.subcategory.name}')">

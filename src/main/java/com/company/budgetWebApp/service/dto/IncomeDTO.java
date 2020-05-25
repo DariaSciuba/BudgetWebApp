@@ -9,6 +9,7 @@ public class IncomeDTO {
     private double amount;
     private String note;
     private AccountDTO accountDTO;
+    private IncomeSourceDTO incomeSourceDTO;
 
     public Long getId() {
         return id;
@@ -56,5 +57,13 @@ public class IncomeDTO {
 
     public void setAccountDTO(AccountDTO accountDTO) {
         this.accountDTO = accountDTO;
+    }
+
+    public IncomeSourceDTO getIncomeSourceDTO() {
+        return incomeSourceDTO;
+    }
+
+    public void setIncomeSourceDTO(IncomeSourceDTO incomeSourceDTO) {
+        this.incomeSourceDTO = incomeSourceDTO;
     }
 }

@@ -12,8 +12,7 @@
         <form:input id="number" type="text" path="accountNumber" placeholder="Account number..." minlength="8" maxlength="28" class="form-control" required="true"/>
 
         <label for="type">Account type</label>
-        <form:select id="type" path="accountType" class="form-control" required="true">
-            <form:option value="">Choose type</form:option>
+        <form:select id="type" path="accountType" placeholder="Choose type" class="form-control" required="true" >
             <form:option value="debit">debit</form:option>
             <form:option value="credit">credit</form:option>
             <form:option value="savings">savings</form:option>
@@ -22,7 +21,7 @@
         <label for="currency">Currency</label>
         <form:input id="currency" type="text" path="currency" placeholder="PLN/EUR/USD" minlength="1" maxlength="3" class="form-control" required="true"/>
 
-        <label for="balance">Currency</label>
+        <label for="balance">Balance</label>
         <form:input id="balance" type="number" path="balanceDTO" placeholder="1500.00" step="0.01" class="form-control" required="true"/>
 
         <input type="submit" value="Add"/>

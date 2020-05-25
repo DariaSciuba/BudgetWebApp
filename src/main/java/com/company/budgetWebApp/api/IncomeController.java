@@ -2,12 +2,15 @@ package com.company.budgetWebApp.api;
 
 import com.company.budgetWebApp.dao.entity.AccountEntity;
 import com.company.budgetWebApp.dao.entity.IncomeEntity;
+import com.company.budgetWebApp.dao.entity.IncomeSourceEntity;
 import com.company.budgetWebApp.dao.entity.SubcategoryEntity;
 import com.company.budgetWebApp.service.AccountService;
 import com.company.budgetWebApp.service.IncomeService;
+import com.company.budgetWebApp.service.IncomeSourceService;
 import com.company.budgetWebApp.service.SubcategoryService;
 import com.company.budgetWebApp.service.dto.AccountDTO;
 import com.company.budgetWebApp.service.dto.IncomeDTO;
+import com.company.budgetWebApp.service.dto.IncomeSourceDTO;
 import com.company.budgetWebApp.service.dto.SubcategoryDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,12 +27,15 @@ public class IncomeController {
     private final IncomeService incomeService;
     private final SubcategoryService subcategoryService;
     private final AccountService accountService;
+    private final IncomeSourceService incomeSourceService;
 
     @Autowired
-    public IncomeController(IncomeService incomeService, SubcategoryService subcategoryService, AccountService accountService) {
+    public IncomeController(IncomeService incomeService, SubcategoryService subcategoryService,
+                            AccountService accountService, IncomeSourceService incomeSourceService) {
         this.incomeService = incomeService;
         this.subcategoryService = subcategoryService;
         this.accountService = accountService;
+        this.incomeSourceService = incomeSourceService;
     }
 
     @GetMapping("/list")
@@ -44,9 +50,11 @@ public class IncomeController {
         IncomeEntity incomeEntity = incomeService.mapIncomeDtoToEntity(incomeDTO);
         SubcategoryEntity subcategoryEntity = subcategoryService.findById(incomeDTO.getSubcategoryDTO().getId()).get();
         AccountEntity accountEntity = accountService.findById(incomeDTO.getAccountDTO().getId()).get();
+        IncomeSourceEntity incomeSourceEntity = incomeSourceService.findById(incomeDTO.getIncomeSourceDTO().getId()).get();
 
         incomeEntity.setSubcategory(subcategoryEntity);
         incomeEntity.setAccount(accountEntity);
+        incomeEntity.setIncomeSource(incomeSourceEntity);
 
         incomeService.save(incomeEntity);
         return "redirect:/app/income/list";
@@ -60,6 +68,11 @@ public class IncomeController {
     @ModelAttribute("accounts")
     private List<AccountDTO> fetchAccountsToDto() {
         return accountService.mapAccountListEtityToDto(accountService.findAll());
+    }
+
+    @ModelAttribute("incomeSources")
+    private List<IncomeSourceDTO> fetchIncomeSourcesToDto() {
+        return incomeSourceService.mapToIncomeSourceDtoList(incomeSourceService.findAll());
     }
 
     @GetMapping("/delete/{id}")
@@ -81,9 +94,11 @@ public class IncomeController {
         IncomeEntity incomeEntity = incomeService.mapIncomeDtoToEntity(incomeDTO);
         SubcategoryEntity subcategoryEntity = subcategoryService.findById(incomeDTO.getSubcategoryDTO().getId()).get();
         AccountEntity accountEntity = accountService.findById(incomeDTO.getAccountDTO().getId()).get();
+        IncomeSourceEntity incomeSourceEntity = incomeSourceService.findById(incomeDTO.getIncomeSourceDTO().getId()).get();
 
         incomeEntity.setSubcategory(subcategoryEntity);
         incomeEntity.setAccount(accountEntity);
+        incomeEntity.setIncomeSource(incomeSourceEntity);
 
         incomeService.save(incomeEntity);
         return "redirect:/app/income/list";

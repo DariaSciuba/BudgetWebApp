@@ -1,6 +1,7 @@
 package com.company.budgetWebApp.dao.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.Date;
 import java.util.Objects;
 
@@ -25,6 +26,9 @@ public class IncomeEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     private AccountEntity account;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private IncomeSourceEntity incomeSource;
 
     public IncomeEntity() {
 
@@ -78,6 +82,14 @@ public class IncomeEntity {
         this.account = account;
     }
 
+    public IncomeSourceEntity getIncomeSource() {
+        return incomeSource;
+    }
+
+    public void setIncomeSource(IncomeSourceEntity incomeSource) {
+        this.incomeSource = incomeSource;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -103,6 +115,8 @@ public class IncomeEntity {
                 ", subcategory=" + subcategory +
                 ", amount=" + amount +
                 ", note='" + note + '\'' +
+                ", account=" + account +
+                ", incomeSource=" + incomeSource +
                 '}';
     }
 }
